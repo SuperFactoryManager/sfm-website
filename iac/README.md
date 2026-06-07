@@ -2,8 +2,10 @@
 
 This directory intentionally keeps the first pass simple.
 
-- `main.tf` is a single flat OpenTofu root for the phase-1 AKS-hosted static site.
+- `terraform.tf` defines the backend and provider versions.
+- `provider.*.tf`, `data.*.tf`, `resource.*.tf`, and `output.*.tf` keep each object in its own file after formatting/splitting.
 - `upload-static.ps1` uploads the full `static/` directory into the blob container mounted by nginx.
+- `set-namecheap-vars.ps1` loads the Namecheap provider credentials into `NAMECHEAP_*` environment variables from 1Password.
 
 ## Current assumptions
 
@@ -17,17 +19,17 @@ This directory intentionally keeps the first pass simple.
 - The blob container literal is `webcontent`.
 - The Kubernetes namespace is `sfm-website`.
 - The cert-manager service account is assumed to be `cert-manager` in the `cert-manager` namespace.
+- The registrar is Namecheap, and this root overwrites the domain nameserver delegation to the Azure DNS zone nameservers.
 
 ## Expected flow
 
-1. Run `tofu init`.
-2. Run `tofu plan`.
-3. Apply when ready.
-4. Upload site content with `.\upload-static.ps1`.
-5. Delegate the registrar to the Azure DNS zone nameservers after reviewing the `dns_name_servers` output.
+1. Load Namecheap credentials with `.\set-namecheap-vars.ps1`, and set `NAMECHEAP_CLIENT_IP` too if your API access requires it.
+2. Run `tofu init`.
+3. Run `tofu plan`.
+4. Apply when ready.
+5. Upload site content with `.\upload-static.ps1`.
 
 ## Not in scope yet
 
-- Namecheap delegation automation
 - Analytics or backend services
 - GitHub Actions deployment automation

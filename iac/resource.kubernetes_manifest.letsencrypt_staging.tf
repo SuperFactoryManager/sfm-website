@@ -20,7 +20,7 @@ resource "kubernetes_manifest" "letsencrypt_staging" {
         solvers = [{
           dns01 = {
             azureDNS = {
-              subscriptionID    = "6cb7032f-2437-4f5e-91e8-676cb67e5444"
+              subscriptionID    = data.azurerm_client_config.current.subscription_id
               resourceGroupName = azurerm_resource_group.main.name
               hostedZoneName    = azurerm_dns_zone.main.name
               environment       = "AzurePublicCloud"

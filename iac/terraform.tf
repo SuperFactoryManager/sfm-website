@@ -18,5 +18,9 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "3.1.0"
     }
+    namecheap = {
+      source  = "namecheap/namecheap"
+      version = "2.3.4"
+    }
   }
 }
