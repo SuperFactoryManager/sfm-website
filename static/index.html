@@ -4,86 +4,130 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Super Factory Manager</title>
-    <meta
-      name="description"
-      content="Super Factory Manager is a Minecraft automation mod with a programmable factory DSL, examples, community guides, and a growing showcase."
-    >
+    <meta name="description" content="Super Factory Manager content portal">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="page">
-      <section class="hero">
-        <p class="eyebrow">superfactorymanager.ca</p>
-        <h1>Program your factory.</h1>
-        <p class="lede">
-          Super Factory Manager brings a purpose-built automation language to Minecraft.
-          Learn the syntax, browse examples, and discover what the community has built.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="https://deepwiki.com/TeamDman/SuperFactoryManager">Open DeepWiki</a>
-          <a class="button" href="https://github.com/TeamDman/SuperFactoryManager">GitHub</a>
-          <a class="button" href="https://www.curseforge.com/minecraft/mc-mods/super-factory-manager">CurseForge</a>
-          <a class="button" href="https://discord.gg/5mbUY3mu6m">Discord</a>
+      <header class="masthead">
+        <h1>Super Factory Manager</h1>
+        <nav class="section-nav" aria-label="Sections">
+          <a href="#about">About</a>
+          <a href="#learn">Learn</a>
+          <a href="#watch">Watch</a>
+          <a href="#legacy">Legacy</a>
+        </nav>
+      </header>
+
+      <section class="content-section" id="about">
+        <div class="section-heading">
+          <h2>About</h2>
+          <span class="count" data-count-for="about">0</span>
         </div>
+        <div class="content-grid" data-category="about"></div>
       </section>
 
-      <section class="panel">
-        <h2>Start Here</h2>
-        <div class="grid">
-          <article>
-            <h3>Read the docs</h3>
-            <p>The DeepWiki should be the clearest first stop for users who want an overview and searchable guidance.</p>
-          </article>
-          <article>
-            <h3>Study examples</h3>
-            <p>Point users to example programs from the repo and in-game template programs so they can learn from working scripts.</p>
-          </article>
-          <article>
-            <h3>Watch real builds</h3>
-            <p>Collect community videos and automation showcases so new players can see practical uses, not just syntax reference.</p>
-          </article>
+      <section class="content-section" id="learn">
+        <div class="section-heading">
+          <h2>Learn</h2>
+          <span class="count" data-count-for="learn">0</span>
         </div>
+        <div class="content-grid" data-category="learn"></div>
       </section>
 
-      <section class="panel">
-        <h2>Featured Community Showcase</h2>
-        <p class="section-copy">
-          Seeded from your current notes backlog. Keep the full list in a data file and promote the strongest entries here.
-        </p>
-        <div class="grid">
-          <article>
-            <h3>To Asgaard</h3>
-            <p>Super Factory Manager Basics in FTB Interactions for a modern-ish spotlight entry point.</p>
-          </article>
-          <article>
-            <h3>Luzifer Senpai</h3>
-            <p>ATM9 videos that show real-world learning and usage with newer packs.</p>
-          </article>
-          <article>
-            <h3>Burkino</h3>
-            <p>Bad Apple!! in Minecraft is a great “this mod can do weird and ambitious things” showcase item.</p>
-          </article>
+      <section class="content-section" id="watch">
+        <div class="section-heading">
+          <h2>Watch</h2>
+          <span class="count" data-count-for="watch">0</span>
         </div>
+        <div class="content-grid" data-category="watch"></div>
       </section>
 
-      <section class="panel split">
-        <div>
-          <h2>Useful Links</h2>
-          <ul class="link-list">
-            <li><a href="https://deepwiki.com/TeamDman/SuperFactoryManager">DeepWiki</a></li>
-            <li><a href="https://marketplace.visualstudio.com/items?itemName=TeamDman.super-factory-manager-language">VSCode extension</a></li>
-            <li><a href="https://docs.google.com/document/d/1QhPESCN4kPflme28_W0jVQRnvyrXXs9ZUxBTLhloCbg/edit?usp=sharing">Text guide v1.0</a></li>
-            <li><a href="https://bin.durocodes.me/">Pastebin with SFM syntax highlighting</a></li>
-          </ul>
+      <section class="content-section" id="legacy">
+        <div class="section-heading">
+          <h2>Legacy</h2>
+          <span class="count" data-count-for="legacy">0</span>
         </div>
-        <div>
-          <h2>Site Direction</h2>
-          <p>
-            Keep this first version intentionally static. Once the content shape feels stable, a small Rust tool can render
-            templates from JSON or Markdown without forcing the monorepo to absorb website concerns.
-          </p>
-        </div>
+        <div class="content-grid" data-category="legacy"></div>
       </section>
     </main>
+
+    <template id="item-template">
+      <article class="item">
+        <div class="item-main">
+          <a class="item-link" target="_blank" rel="noreferrer"></a>
+          <div class="item-meta"></div>
+        </div>
+        <ul class="tag-list"></ul>
+      </article>
+    </template>
+
+    <script>
+      const categoryLabels = {
+        about: "About",
+        learn: "Learn",
+        watch: "Watch",
+        legacy: "Legacy"
+      };
+
+      function renderTags(item, currentCategory) {
+        const tags = [
+          item.kind,
+          item.source,
+          item.era,
+          ...item.categories.filter((category) => category !== currentCategory).map((category) => categoryLabels[category]),
+          ...item.tags
+        ].filter(Boolean);
+
+        return [...new Set(tags)];
+      }
+
+      function renderItem(item, currentCategory) {
+        const template = document.getElementById("item-template");
+        const fragment = template.content.cloneNode(true);
+        const link = fragment.querySelector(".item-link");
+        const meta = fragment.querySelector(".item-meta");
+        const tagList = fragment.querySelector(".tag-list");
+
+        link.textContent = item.title;
+        link.href = item.url;
+        link.dataset.itemId = item.id;
+        link.dataset.category = currentCategory;
+
+        meta.textContent = [item.creator, item.language].filter(Boolean).join(" / ");
+
+        for (const tag of renderTags(item, currentCategory)) {
+          const li = document.createElement("li");
+          li.textContent = tag;
+          tagList.appendChild(li);
+        }
+
+        return fragment;
+      }
+
+      fetch("./data/content.json")
+        .then((response) => response.json())
+        .then((items) => {
+          for (const category of Object.keys(categoryLabels)) {
+            const sectionItems = items
+              .filter((item) => item.categories.includes(category))
+              .sort((a, b) => a.weight - b.weight || a.title.localeCompare(b.title));
+
+            const container = document.querySelector(`[data-category="${category}"]`);
+            const count = document.querySelector(`[data-count-for="${category}"]`);
+            count.textContent = sectionItems.length;
+
+            for (const item of sectionItems) {
+              container.appendChild(renderItem(item, category));
+            }
+          }
+        })
+        .catch(() => {
+          document.body.insertAdjacentHTML(
+            "beforeend",
+            "<div class=\"load-error\">content.json failed to load</div>"
+          );
+        });
+    </script>
   </body>
 </html>
