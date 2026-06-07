@@ -4,7 +4,7 @@ resource "kubernetes_ingress_v1" "frontend" {
     namespace = kubernetes_namespace_v1.main.metadata[0].name
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
-      "cert-manager.io/issuer"      = kubernetes_manifest.letsencrypt_staging.manifest.metadata.name
+      "cert-manager.io/issuer"      = kubernetes_manifest.letsencrypt_prod.manifest.metadata.name
     }
   }
 
