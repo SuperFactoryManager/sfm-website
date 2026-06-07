@@ -1,7 +1,7 @@
-resource "kubernetes_deployment" "frontend" {
+resource "kubernetes_deployment_v1" "frontend" {
   metadata {
     name      = "frontend"
-    namespace = kubernetes_namespace.main.metadata[0].name
+    namespace = kubernetes_namespace_v1.main.metadata[0].name
     labels    = local.frontend_selector
   }
 
@@ -59,7 +59,7 @@ resource "kubernetes_deployment" "frontend" {
           name = "nginx-conf"
 
           config_map {
-            name = kubernetes_config_map.nginx_conf.metadata[0].name
+            name = kubernetes_config_map_v1.nginx_conf.metadata[0].name
           }
         }
 
@@ -70,7 +70,7 @@ resource "kubernetes_deployment" "frontend" {
             driver = "blob.csi.azure.com"
             volume_attributes = {
               containerName = azurerm_storage_container.main.name
-              secretName    = kubernetes_secret.storage_account.metadata[0].name
+              secretName    = kubernetes_secret_v1.storage_account.metadata[0].name
               mountOptions  = "-o allow_other --file-cache-timeout-in-seconds=120"
             }
           }

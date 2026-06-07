@@ -1,7 +1,7 @@
-resource "kubernetes_secret" "storage_account" {
+resource "kubernetes_secret_v1" "storage_account" {
   metadata {
     name      = "storage-account-secret"
-    namespace = kubernetes_namespace.main.metadata[0].name
+    namespace = kubernetes_namespace_v1.main.metadata[0].name
   }
 
   type = "Opaque"

@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "main" {
+resource "kubernetes_namespace_v1" "main" {
   metadata {
     name = "sfm-website"
     labels = {

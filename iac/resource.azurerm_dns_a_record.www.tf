@@ -4,6 +4,6 @@ resource "azurerm_dns_a_record" "www" {
   resource_group_name = azurerm_resource_group.main.name
   ttl                 = 60
   records = [
-    data.kubernetes_service.ingress_nginx.status[0].load_balancer[0].ingress[0].ip,
+    data.kubernetes_service_v1.ingress_nginx.status[0].load_balancer[0].ingress[0].ip,
   ]
 }

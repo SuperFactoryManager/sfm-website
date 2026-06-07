@@ -8,7 +8,7 @@ resource "kubernetes_manifest" "letsencrypt_staging" {
     kind       = "Issuer"
     metadata = {
       name      = "letsencrypt-staging"
-      namespace = kubernetes_namespace.main.metadata[0].name
+      namespace = kubernetes_namespace_v1.main.metadata[0].name
     }
     spec = {
       acme = {

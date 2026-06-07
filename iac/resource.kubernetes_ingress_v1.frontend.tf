@@ -1,7 +1,7 @@
 resource "kubernetes_ingress_v1" "frontend" {
   metadata {
     name      = "frontend"
-    namespace = kubernetes_namespace.main.metadata[0].name
+    namespace = kubernetes_namespace_v1.main.metadata[0].name
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
       "cert-manager.io/issuer"      = kubernetes_manifest.letsencrypt_staging.manifest.metadata.name
@@ -29,7 +29,7 @@ resource "kubernetes_ingress_v1" "frontend" {
 
           backend {
             service {
-              name = kubernetes_service.frontend.metadata[0].name
+              name = kubernetes_service_v1.frontend.metadata[0].name
 
               port {
                 number = 80
@@ -50,7 +50,7 @@ resource "kubernetes_ingress_v1" "frontend" {
 
           backend {
             service {
-              name = kubernetes_service.frontend.metadata[0].name
+              name = kubernetes_service_v1.frontend.metadata[0].name
 
               port {
                 number = 80

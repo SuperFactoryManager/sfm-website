@@ -1,7 +1,7 @@
-resource "kubernetes_service" "frontend" {
+resource "kubernetes_service_v1" "frontend" {
   metadata {
     name      = "frontend"
-    namespace = kubernetes_namespace.main.metadata[0].name
+    namespace = kubernetes_namespace_v1.main.metadata[0].name
   }
 
   spec {
