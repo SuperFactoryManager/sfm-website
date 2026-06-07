@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Super Factory Manager Basics: FTB Interactions Lp Ep #24 Minecraft 1.12",
+    "creator": "To Asgaard",
+    "language": "English",
+    "era": "Super Factory Manager",
+    "kind": "tutorial",
+    "url": "https://youtu.be/7tTCvOoVPbc",
+    "notes": "Useful early featured item for the website because it is directly about Super Factory Manager rather than the older Steve's Factory Manager branding."
+  },
+  {
+    "title": "All the Mods 9 E49 - Super Factory Manager nearly killed my Savefile",
+    "creator": "Luzifer Senpai",
+    "language": "English",
+    "era": "Super Factory Manager",
+    "kind": "lets-play",
+    "url": "https://youtu.be/Lf_K4k8btKE",
+    "notes": "Good modern pack coverage with a memorable hook."
+  },
+  {
+    "title": "All the Mods 9 E50 - Learning Super Factory Manager",
+    "creator": "Luzifer Senpai",
+    "language": "English",
+    "era": "Super Factory Manager",
+    "kind": "lets-play",
+    "url": "https://www.youtube.com/watch?v=RgdVbFaCAtE",
+    "notes": "Pairs naturally with the previous entry."
+  },
+  {
+    "title": "Super factory manager: EMC condenser automate",
+    "creator": "모드타임",
+    "language": "Korean",
+    "era": "Super Factory Manager",
+    "kind": "tutorial",
+    "url": "https://www.youtube.com/watch?v=feEXiMTeWsA",
+    "notes": "Good international example for the showcase."
+  },
+  {
+    "title": "TUTO SUPER FACTORY MANAGER/SFM 1.20.1+",
+    "creator": "hollow et nini",
+    "language": "French",
+    "era": "Super Factory Manager",
+    "kind": "tutorial",
+    "url": "https://www.youtube.com/watch?v=zj6maioxw_U",
+    "notes": "A clean non-English tutorial entry."
+  },
+  {
+    "title": "Bad Apple!! but in Minecraft using Super Factory Manager",
+    "creator": "Burkino",
+    "language": "Silent",
+    "era": "Super Factory Manager",
+    "kind": "showcase",
+    "url": "https://www.youtube.com/watch?v=6Ql_CnpX-M4",
+    "notes": "Strong community-showcase item because it demonstrates ambition rather than just utility."
+  },
+  {
+    "title": "Steve's Factory Manager Playlist",
+    "creator": "VSWE",
+    "language": "English",
+    "era": "Steve's Factory Manager",
+    "kind": "historical",
+    "url": "https://www.youtube.com/playlist?list=PL6lD77ZPqAf2WC1JyGAZ0XeOZALq-IuyM",
+    "notes": "Important legacy context. Should likely live in a historical section so users do not confuse old and new versions."
+  }
+]
